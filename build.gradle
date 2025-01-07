@@ -1,0 +1,46 @@
+plugins {
+	id 'eclipse'
+	id 'java'
+	id 'java-library'
+	id 'org.springframework.boot' version '3.2.4'
+	id 'io.spring.dependency-management' version '1.1.4'
+	id 'maven-publish'
+}
+
+subprojects {
+    apply plugin: 'java'
+}
+
+group = 'com.cormac.fhir'
+version = '0.0.1'
+
+def jarName = "d4m.acc.microservice"
+def jarFile = layout.buildDirectory.file("libs/${jarName}.jar").get().asFile
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'd4m.acc.microservice.Application'
+        )
+    }
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	api project(':d4m.acc.access')
+	implementation project(':FHIRSDS')
+	implementation 'org.springframework.boot:spring-boot-starter-web:3.2.4'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

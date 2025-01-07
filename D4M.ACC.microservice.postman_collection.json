@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "e6c622a9-e12f-4890-93f7-d913a422f536",
+		"name": "D4M.ACC.microservice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22838281"
+	},
+	"item": [
+		{
+			"name": "AveMundus",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tables",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/tables",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"tables"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "dual",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8888/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ins",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "dual",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8888/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
