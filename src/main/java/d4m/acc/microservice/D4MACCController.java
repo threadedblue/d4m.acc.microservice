@@ -17,16 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import d4m.acc.access.AccumuloAccess;
 
+@ComponentScan
 @RestController
 public class D4MACCController {
 
 	private static final Logger log = LoggerFactory.getLogger(D4MACCController.class);
 
-	@Autowired
-	private AccumuloAccess acc;
+	private final AccumuloAccess acc;
 
-	public D4MACCController() {
+	@Autowired
+	public D4MACCController(AccumuloAccess acc) {
+		this.acc = acc;
 	}
+
 
 	@GetMapping("/")
 	public String hello() {
