@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e6c622a9-e12f-4890-93f7-d913a422f536",
+		"_postman_id": "b0037f3d-6429-4b68-b923-b73c4ec5a4da",
 		"name": "D4M.ACC.microservice",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "22838281"
@@ -12,11 +12,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8888/",
+					"raw": "{{host}}:{{port}}/",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8888",
+					"port": "{{port}}",
 					"path": [
 						""
 					]
@@ -30,13 +30,31 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8888/tables",
+					"raw": "{{host}}:{{port}}/tables",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8888",
+					"port": "{{port}}",
 					"path": [
 						"tables"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Qry",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{host}}:{{port}}/qry",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"qry"
 					]
 				}
 			},
