@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,7 +31,6 @@ public class D4MACCController {
 	public D4MACCController(AccumuloAccess acc) {
 		this.acc = acc;
 	}
-
 
 	@GetMapping("/")
 	public String hello() {
@@ -58,23 +58,33 @@ public class D4MACCController {
 
 	@PostMapping(path = "/qry", produces = "application/json")
 	@ResponseBody
-	public ResponseEntity<RCVs> runQuery(@RequestBody String qry) {
+	public ResponseEntity<RCVs> runQuery(@RequestBody RowColRequest qry) {
 
 		log.info("qry=" + qry);
-
-		String[] rr = { "r1", "r2", "r3" };
-		String[] cc = { "c1", "c2", "c3" };
-		String[] vv = { "v1", "v2", "v3" };
-
-		RCVs rcvs = new RCVs(rr, cc, vv);
+		String row = qry.getRow();
+        String col = qry.getCol();
+		String tableName = qry.getTableName();
+		RCVs rcvs = acc.query(row, col, );
 		return ResponseEntity.accepted().body(rcvs);
 	}
 
-	@PostMapping(path = "/ins", consumes = MediaType.TEXT_PLAIN_VALUE, produces = "application/json")
-	@ResponseBody
-	public ResponseEntity<String> insResource(@RequestBody String resource, SDS_FORMAT format, String tableName) {
+	// @PostMapping(path = "/ins", consumes = MediaType.APPLICATION_JSON_VALUE,
+	// produces = "application/json")
+	// @ResponseBody
+	// public ResponseEntity<String> insResource(@RequestBody String resource,
+	// SDS_FORMAT format, String tableName) {
 
-		acc.insert(resource, format, tableName);
+	// acc.insert(resource, format, tableName);
+
+	// return ResponseEntity.status(HttpStatus.CREATED).build();
+	// }
+
+	@PostMapping(path = "/ins/{format}/{tableName}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
+	@ResponseBody
+	public ResponseEntity<String> insResource(@RequestBody String resource, @PathVariable SDS_FORMAT format, 																						
+			@PathVariable String tableName) {
+
+		acc.insertPair(resource, format, tableName);
 
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}

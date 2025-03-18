@@ -11,7 +11,7 @@ subprojects {
     apply plugin: 'java'
 }
 
-group = 'com.cormac.fhir'
+group = 'org.psoppc.fhir'
 version = '0.0.1'
 
 def jarName = "d4m.acc.microservice"
@@ -31,16 +31,22 @@ jar {
 }
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
 
 dependencies {
 	implementation project(':d4m.acc.access')
 	implementation project(':FHIRSDS')
+	implementation 'org.cormac:fhir.emf:4.3.0'
+	implementation 'edu.mit.ll:graphulo:3.1.2'
 	implementation 'org.springframework.boot:spring-boot-starter-web:3.2.4'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
+test {
+    useJUnitPlatform()
+    testLogging.showStandardStreams = true
 }
+
