@@ -11,7 +11,7 @@ subprojects {
     apply plugin: 'java'
 }
 
-group = 'org.psoppc.fhir'
+group = 'org.hl7.fhir'
 version = '0.0.1'
 
 def jarName = "d4m.acc.microservice"
@@ -22,26 +22,36 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
-jar {
-    manifest {
-        attributes(
-            'Main-Class': 'd4m.acc.microservice.Application'
-        )
-    }
-}
-
 repositories {
 	mavenLocal()
 	mavenCentral()
 }
 
+configurations.all {
+    exclude group: 'org.apache.logging.log4j', module: 'log4j-slf4j2-impl'
+    exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
+    exclude group: 'org.apache.logging.log4j', module: 'log4j-api'
+    exclude group: 'org.apache.logging.log4j'
+    exclude group: 'commons-logging', module: 'commons-logging'
+    exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    exclude group: 'org.slf4j', module: 'slf4j-simple'
+    exclude group: 'org.slf4j', module: 'reload4j'
+}
+
+
 dependencies {
 	implementation project(':d4m.acc.access')
-	implementation project(':FHIRSDS')
-	implementation 'org.cormac:fhir.emf:4.3.0'
-	implementation 'edu.mit.ll:graphulo:3.1.2'
-	implementation 'org.springframework.boot:spring-boot-starter-web:3.2.4'
+	implementation project(':fhir.serdeser')
+	implementation('edu.mit.ll:graphulo:3.1.2') {
+		exclude group: 'org.apache.logging.log4j'
+		exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+		exclude group: 'org.slf4j', module: 'reload4j'
+	}	
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.slf4j:slf4j-api:2.0.9'
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

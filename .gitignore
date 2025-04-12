@@ -1,6 +1,7 @@
 HELP.md
 .gradle
 .classpath
+.project
 .settings/
 gradlew
 bin/

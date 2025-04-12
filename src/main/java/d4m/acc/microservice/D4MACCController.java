@@ -56,17 +56,17 @@ public class D4MACCController {
 		return ResponseEntity.accepted().body(tableName);
 	}
 
-	@PostMapping(path = "/qry", produces = "application/json")
-	@ResponseBody
-	public ResponseEntity<RCVs> runQuery(@RequestBody RowColRequest qry) {
+	// @PostMapping(path = "/qry", produces = "application/json")
+	// @ResponseBody
+	// public ResponseEntity<RCVs> runQuery(@RequestBody RowColRequest qry) {
 
-		log.info("qry=" + qry);
-		String row = qry.getRow();
-        String col = qry.getCol();
-		String tableName = qry.getTableName();
-		RCVs rcvs = acc.query(row, col, );
-		return ResponseEntity.accepted().body(rcvs);
-	}
+	// 	log.info("qry=" + qry);
+	// 	String row = qry.getRow();
+    //     String col = qry.getCol();
+	// 	String tableName = qry.getTableName();
+	// 	RCVs rcvs = acc.query(row, col, "val");
+	// 	return ResponseEntity.accepted().body(rcvs);
+	// }
 
 	// @PostMapping(path = "/ins", consumes = MediaType.APPLICATION_JSON_VALUE,
 	// produces = "application/json")

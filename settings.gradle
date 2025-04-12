@@ -2,5 +2,5 @@ rootProject.name = 'd4m.acc.microservice'
 
 include ':d4m.acc.access'
 project(':d4m.acc.access').projectDir = new File(settingsDir, '../d4m.acc.access')
-include ':FHIRSDS'
-project(':FHIRSDS').projectDir = new File(settingsDir, '../FHIRSDS')
+include ':fhir.serdeser'
+project(':fhir.serdeser').projectDir = new File(settingsDir, '../fhir.serdeser')
